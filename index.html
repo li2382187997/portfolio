@@ -1,0 +1,961 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>李雅洁个人作品集</title>
+  <!-- 字体走飞书镜像，避免直连外源 -->
+  <link rel="preconnect" href="https://miaoda.feishu.cn">
+  <link href="https://miaoda.feishu.cn/fonts/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* === CSS变量：esther 三色 · 米色系定制（胡桃棕60 / 赭金30 / 橄榄10） === */
+    :root { --_esther-ds: "esthersjw-v1";
+      --blue: #7A5A3A;        /* 主 · 胡桃棕 */
+      --blue-deep: #4A3522;   /* 主深 · 焙烤棕 */
+      --yellow: #C9973F;       /* 强调 · 赭金 */
+      --yellow-soft: #F3E4C6;  /* 赭金淡底 */
+      --red: #7C8A68;          /* 点缀 · 橄榄 */
+      --gold: #E5C878;        /* 荣誉金 · 备用点缀 */
+      --cream: #F2EEE6;       /* 米纸 · 页面底 */
+      --cream-dark: #EAE3D4;  /* 燕麦 · 交替底 */
+      --card: #FBF7EE;        /* 卡片 · 暖白 */
+      --ink: #292626;
+      --ink-light: #4E4740;
+      --ink-faint: #8F867C;
+      --dark-panel: #2B221A;  /* 深棕面板 */
+      --serif: 'Noto Serif SC', 'Songti SC', serif;
+      --disp: 'Fraunces', 'Noto Serif SC', serif;
+      --sans: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+
+    /* === Reset === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--ink);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--gold); color: var(--ink); }
+
+    img { display: block; max-width: 100%; }
+    a { color: var(--blue); text-decoration: none; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 48px);
+    }
+
+    /* === 顶部导航（组件9） === */
+    .topnav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px clamp(20px, 4vw, 48px);
+      background: rgba(242, 238, 230, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(41, 38, 38, 0.10);
+    }
+    .topnav .nm {
+      font-family: var(--serif); font-weight: 900; font-size: 15px; letter-spacing: 0.14em; color: var(--ink);
+    }
+    .topnav .nm small {
+      font-family: var(--sans); font-weight: 500; color: var(--ink-faint);
+      letter-spacing: 0.24em; margin-left: 10px; font-size: 10px;
+    }
+    .topnav nav { display: flex; gap: 4px; }
+    .topnav nav a {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
+      color: var(--ink-light); padding: 6px 12px; border-radius: 999px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .topnav nav a:hover { background: var(--yellow-soft); color: var(--blue-deep); }
+
+    /* === 小标签（组件：chip） === */
+    .label-caps {
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em;
+      font-weight: 500; color: var(--ink-faint); display: block; margin-bottom: 0.75rem;
+    }
+    .chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
+      background: var(--card); color: var(--ink-light);
+      border: 1px solid rgba(41, 38, 38, 0.16);
+      padding: 4px 12px; border-radius: 999px; white-space: nowrap;
+    }
+    .chip--gold { border-color: rgba(201, 151, 63, 0.55); color: var(--blue-deep); background: var(--yellow-soft); }
+    .chip--olive { border-color: rgba(124, 138, 104, 0.6); color: #57634A; background: rgba(124, 138, 104, 0.10); }
+    .chip--wip { border-style: dashed; color: #8A6D00; background: rgba(224, 192, 104, 0.14); }
+    .tagrow { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    /* === 按钮（组件18 CTA） === */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 700; font-size: 14px; letter-spacing: 0.02em;
+      padding: 12px 22px; border-radius: 12px;
+      background: var(--blue); color: var(--cream);
+      box-shadow: 0 10px 24px -12px rgba(122, 90, 58, 0.6);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -12px rgba(122, 90, 58, 0.7); }
+    .btn--paper { background: var(--card); color: var(--ink); border: 1.5px solid rgba(41, 38, 38, 0.35); box-shadow: none; }
+    .btn--paper:hover { border-color: var(--blue); color: var(--blue-deep); }
+
+    /* === 图片相框 === */
+    .photo {
+      background: var(--card); padding: 10px 10px 12px;
+      border: 1px solid rgba(41, 38, 38, 0.08);
+      box-shadow: 0 24px 48px -24px rgba(41, 38, 38, 0.35);
+      border-radius: 6px;
+    }
+    .photo img { width: 100%; object-fit: cover; border-radius: 2px; }
+    .photo figcaption {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+      color: var(--ink-faint); text-align: center; padding-top: 8px;
+    }
+
+    /* === Lightbox 图片放大 === */
+    img.lbable { cursor: zoom-in; }
+    .lb {
+      position: fixed; inset: 0;
+      background: rgba(22, 20, 18, .92);
+      z-index: 300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    .lb.show { display: flex; }
+    .lb img {
+      max-width: 94vw; max-height: 92vh;
+      object-fit: contain;
+      background: #fff;
+      padding: 8px;
+    }
+    .lb .x {
+      position: absolute; top: 10px; right: 24px;
+      color: #fff; font-size: 44px; line-height: 1;
+      cursor: pointer; font-family: var(--serif);
+    }
+
+    /* === 区块骨架（组件2 Section Header） === */
+    .section { position: relative; padding: clamp(72px, 10vh, 130px) 0; }
+    .section--alt { background: var(--cream-dark); }
+    .section-header { margin-bottom: clamp(36px, 5vw, 64px); position: relative; z-index: 2; }
+    .section-number {
+      font-family: var(--disp); font-style: italic; font-weight: 400;
+      font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+      color: var(--yellow); opacity: 0.85; display: block; margin-bottom: 0.35rem;
+    }
+    .section-title {
+      font-family: var(--serif); font-weight: 900;
+      font-size: clamp(1.6rem, 3.4vw, 2.4rem); line-height: 1.25; color: var(--ink);
+    }
+    .section-sub { margin-top: 10px; font-size: 0.92rem; color: var(--ink-light); }
+    /* 大装饰数字（P1：背景透明大字） */
+    .deco-num {
+      position: absolute; top: clamp(12px, 3vw, 40px); right: clamp(8px, 4vw, 60px);
+      font-family: var(--disp); font-style: italic; font-weight: 400;
+      font-size: clamp(5rem, 14vw, 11rem); line-height: 1;
+      color: var(--blue); opacity: 0.07; pointer-events: none; user-select: none; z-index: 1;
+    }
+
+    /* === 卡片（组件1A） === */
+    .card {
+      background: var(--card); border-radius: 16px;
+      padding: clamp(20px, 2.6vw, 30px);
+      border: 1px solid rgba(41, 38, 38, 0.07);
+      border-bottom: 4px solid var(--yellow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(41, 38, 38, 0.28); }
+    .card .k { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); }
+    .card b.t { display: block; font-family: var(--serif); font-weight: 900; font-size: 1.05rem; margin: 6px 0 6px; color: var(--ink); }
+    .card .d { font-size: 0.88rem; color: var(--ink-light); line-height: 1.7; }
+
+    /* === 复盘六格（组件10：编号卡片） === */
+    .recap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px; }
+    .recap .cell {
+      background: var(--card); border-radius: 12px; padding: 16px 18px;
+      border-left: 3px solid var(--yellow);
+    }
+    .recap .cell b {
+      display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em;
+      color: var(--blue); margin-bottom: 4px;
+    }
+    .recap .cell span { font-size: 0.86rem; color: var(--ink-light); line-height: 1.65; }
+
+    /* === 流程步骤条 === */
+    .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .flow .s {
+      font-size: 13px; font-weight: 700; color: var(--blue-deep);
+      background: var(--yellow-soft); border: 1px solid rgba(201, 151, 63, 0.4);
+      padding: 6px 14px; border-radius: 999px;
+    }
+    .flow .ar { color: var(--ink-faint); font-weight: 700; }
+
+    /* === 键值行（无默认样式，全部定制） === */
+    .kv { display: grid; gap: 14px; }
+    .kv .line { display: flex; gap: 14px; font-size: 0.94rem; line-height: 1.7; }
+    .kv .line b { flex: 0 0 76px; font-family: var(--serif); font-weight: 900; color: var(--blue); }
+    .kv .line span { color: var(--ink-light); }
+
+    /* === Scroll Reveal === */
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+    .reveal-d5 { transition-delay: 0.5s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ============ HERO（布局：双栏 + 照片拼贴） ============ */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: grid; grid-template-columns: 1fr;
+      align-items: center; gap: clamp(32px, 5vw, 72px);
+      padding: clamp(110px, 16vh, 150px) clamp(20px, 4vw, 48px) clamp(56px, 8vh, 80px);
+      max-width: 1200px; margin: 0 auto;
+    }
+    .hero::before {
+      content: ""; position: absolute; right: 4%; top: 12%;
+      width: clamp(240px, 30vw, 420px); height: clamp(240px, 30vw, 420px);
+      border: 2px dashed rgba(201, 151, 63, 0.30); border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-family: var(--serif); font-weight: 900;
+      font-size: clamp(2.9rem, 7vw, 5.2rem); line-height: 1.12; color: var(--ink);
+    }
+    .hero h1 em { font-family: var(--disp); font-style: italic; font-weight: 400; color: var(--yellow); }
+    .hero .sub {
+      font-family: var(--serif); font-weight: 700;
+      font-size: clamp(1.05rem, 2vw, 1.4rem); margin-top: 18px; color: var(--ink);
+    }
+    .hero .desc { margin-top: 14px; font-size: 0.95rem; color: var(--ink-light); max-width: 540px; }
+    .hero .tagrow { margin-top: 22px; }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .hero-stats .stat {
+      background: var(--card); border: 1px solid rgba(41, 38, 38, 0.09);
+      border-radius: 12px; padding: 10px 18px;
+    }
+    .hero-stats .stat b { display: block; font-family: var(--disp); font-size: 1.15rem; font-weight: 600; color: var(--blue-deep); line-height: 1.3; }
+    .hero-stats .stat span { font-size: 11px; letter-spacing: 0.08em; color: var(--ink-faint); }
+    .hero-collage { position: relative; display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: auto auto; gap: 16px; }
+    .hero-collage .p1 { grid-row: 1 / 3; }
+    .hero-collage .p1 img { aspect-ratio: 3/4; }
+    .hero-collage .p2 img { width: 150px; height: 150px; }    /* 日常·一 */
+    .hero-collage .p3 img { width: 150px; height: 160px; }    /* 日常·二 */
+    .scrollhint {
+      position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%);
+      font-size: 11px; letter-spacing: 0.22em; font-weight: 500; color: var(--ink-faint);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .scrollhint i { width: 5px; height: 5px; border-radius: 50%; background: var(--yellow); animation: bd 1.6s ease-in-out infinite; }
+    @keyframes bd { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(5px); opacity: 0.4; } }
+
+    /* ============ K1 教育背景（布局：左主档案 + 右荣誉卡） ============ */
+    .k1-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 28px; align-items: start; }
+    .k1-left { background: var(--card); border-radius: 20px; padding: clamp(24px, 3vw, 40px); border-top: 4px solid var(--blue); }
+    .k1-right { display: grid; gap: 16px; }
+    .k1-right .card { border-bottom-color: var(--gold); }
+    .k1-note { margin-top: 20px; padding: 14px 18px; background: var(--yellow-soft); border-radius: 12px; font-size: 0.88rem; color: var(--ink-light); border: 1px dashed rgba(201, 151, 63, 0.5); }
+
+    /* ============ K2 学科竞赛（布局：杂志大图左 + 奖项卡右） ============ */
+    .k2-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: start; }
+    .k2-grid .photo img { max-height: 460px; width: 100%; object-fit: cover; }
+    .k2-right { display: grid; gap: 16px; }
+    .k2-right .card:nth-child(1) { border-bottom-color: var(--gold); }
+    .k2-right .card:nth-child(2) { border-bottom-color: var(--red); }
+
+    /* ============ K3 个人数据工具（布局：文案左 + 大图右 + 下方小图） ============ */
+    .k3-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 32px; align-items: center; }
+    .k3-grid .photo img { max-height: 420px; object-position: top center; }
+    .k3-note { background: var(--card); border-radius: 14px; padding: 18px 22px; border-left: 3px solid var(--red); font-size: 0.92rem; color: var(--ink-light); }
+    .k3-note + .k3-note { margin-top: 12px; border-left-color: var(--yellow); }
+    .k3-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 32px; }
+    .k3-strip .photo img { height: clamp(140px, 22vw, 220px); object-fit: cover; }
+    /* 视频演示块：横版全宽，视频为主角 */
+    .video-demo { grid-column: 1 / -1; margin: 0; background: var(--card); padding: 10px 10px 12px; border: 1px solid rgba(41, 38, 38, 0.08); box-shadow: 0 24px 48px -24px rgba(41, 38, 38, 0.35); border-radius: 6px; }
+    .video-demo video { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; border-radius: 2px; display: block; background: #000; }
+    .video-demo figcaption { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--ink-faint); text-align: center; padding-top: 8px; }
+    /* 竖版视频：完整展示不裁剪，居中收窄 */
+    .video-demo--portrait { max-width: min(400px, 88vw); justify-self: center; }
+    .video-demo--portrait video { aspect-ratio: 9 / 16; }
+
+    /* ============ K4 已移除（CSS 备用，不渲染） ============ */
+    .k4-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .k4-grid .photo img { aspect-ratio: 3/4; object-fit: cover; }
+
+    /* ============ K5 洞察（已并入 K6，CSS 备用） ============ */
+    .quote-big {
+      position: relative; margin-bottom: 40px; padding: clamp(24px, 4vw, 48px) clamp(24px, 5vw, 64px);
+      background: var(--card); border-radius: 20px; border: 1px solid rgba(41, 38, 38, 0.07);
+      box-shadow: 0 28px 56px -32px rgba(41, 38, 38, 0.3);
+    }
+    .quote-big::before {
+      content: "\201C"; position: absolute; top: -28px; left: 24px;
+      font-family: var(--disp); font-style: italic; font-size: 5.5rem; line-height: 1;
+      color: var(--yellow); opacity: 0.9;
+    }
+    .quote-big .qt { font-family: var(--serif); font-weight: 900; font-size: clamp(1.25rem, 2.6vw, 1.8rem); line-height: 1.6; color: var(--ink); }
+    .quote-big .qs { margin-top: 12px; font-size: 0.8rem; letter-spacing: 0.14em; color: var(--ink-faint); }
+    .k5-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 32px; align-items: start; }
+    .k5-grid .photo img { aspect-ratio: 3/4; object-fit: cover; max-height: 440px; }
+    .k5-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 4px; }
+    .k5-steps .card { border-bottom-color: var(--red); padding: 18px; }
+    .k5-steps .card b.t { font-size: 0.95rem; }
+
+    /* ============ K6 校园招新全案（布局：全宽深色面板） ============ */
+    .k6-panel { background: var(--dark-panel); color: #EDE6DA; }
+    .k6-panel .section-title { color: #F6F0E4; }
+    .k6-panel .section-number { color: var(--gold); opacity: 1; }
+    .k6-panel .section-sub { color: rgba(237, 230, 218, 0.7); }
+    .k6-panel .deco-num { color: var(--gold); opacity: 0.08; }
+    .k6-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 32px; align-items: start; }
+    .k6-cover {
+      background: #4A3D31; border-radius: 14px; overflow: hidden;
+      border: 1px solid rgba(237, 230, 218, 0.14);
+      box-shadow: 0 32px 64px -28px rgba(0, 0, 0, 0.6);
+    }
+    .k6-cover img { width: 100%; aspect-ratio: 21/9; object-fit: cover; }
+    .k6-cover .cap { padding: 10px 16px; font-size: 12px; letter-spacing: 0.1em; color: rgba(237, 230, 218, 0.75); }
+    .k6-posters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+    .k6-posters .ph { background: #4A3D31; border-radius: 10px; overflow: hidden; border: 1px solid rgba(237, 230, 218, 0.12); }
+    .k6-posters .ph img { width: 100%; height: clamp(96px, 14vw, 150px); object-fit: cover; }
+    .k6-right { display: grid; gap: 16px; }
+    .k6-right .chip { background: rgba(251, 247, 238, 0.08); border-color: rgba(237, 230, 218, 0.25); color: #EDE6DA; }
+    .k6-right .note-p {
+      background: rgba(251, 247, 238, 0.06); border: 1px solid rgba(237, 230, 218, 0.14);
+      border-radius: 14px; padding: 16px 20px; font-size: 0.9rem; color: rgba(237, 230, 218, 0.85); line-height: 1.75;
+    }
+    .k6-right .btn { background: var(--gold); color: var(--ink); }
+    .k6-right .btn--paper { background: transparent; color: #EDE6DA; border: 1.5px solid rgba(237, 230, 218, 0.4); box-shadow: none; }
+    .k6-right .btn--paper:hover { border-color: var(--gold); color: var(--gold); }
+    .k6-right .linkcol { display: grid; gap: 12px; }
+    .k6-right .url-note {
+      font-size: 10px; line-height: 1.6; color: rgba(237, 230, 218, 0.5);
+      font-family: 'Fira Code', Consolas, monospace; word-break: break-all; user-select: text;
+    }
+    .k6-panel .recap .cell { background: rgba(251, 247, 238, 0.06); border-left-color: var(--gold); }
+    .k6-panel .recap .cell b { color: var(--gold); }
+    .k6-panel .recap .cell span { color: rgba(237, 230, 218, 0.78); }
+
+    /* ============ K7 已移除（CSS 备用，不渲染） ============ */
+    .k7-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .k7-grid .card:nth-child(1) { border-bottom-color: var(--gold); }
+    .k7-grid .card:nth-child(2) { border-bottom-color: var(--blue); }
+    .k7-grid .card:nth-child(3) { border-bottom-color: var(--red); }
+    .k7-flow {
+      margin-top: 22px; background: var(--card); border-radius: 16px;
+      padding: clamp(20px, 2.6vw, 28px); border: 1px solid rgba(41, 38, 38, 0.07);
+    }
+    .k7-flow .fk { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .k7-flow .fnote { margin-top: 14px; font-size: 0.88rem; color: var(--ink-light); }
+
+    /* ============ K8 技能与工具（布局：六宫格） ============ */
+    .k8-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .k8-grid .card:nth-child(3n+1) { border-bottom-color: var(--blue); }
+    .k8-grid .card:nth-child(3n+2) { border-bottom-color: var(--gold); }
+    .k8-grid .card:nth-child(3n) { border-bottom-color: var(--red); }
+
+    /* ============ K9 联系方式（布局：非对称 CTA） ============ */
+    .k9-wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: start; }
+    .k9-big {
+      font-family: var(--serif); font-weight: 900;
+      font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.3; color: #e1a91a;
+    }
+    .k9-big em { font-family: var(--disp); font-style: italic; font-weight: 400; color: var(--yellow); }
+    .k9-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .k9-materials {
+      background: var(--card); border-radius: 18px; padding: clamp(20px, 2.6vw, 30px);
+      border: 1px solid rgba(41, 38, 38, 0.07); border-top: 4px solid var(--gold);
+    }
+    .k9-materials .mk { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+    .k9-materials ul { list-style: none; display: grid; gap: 10px; }
+    .k9-materials li a {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+      font-size: 0.92rem; font-weight: 500; color: var(--ink-light);
+      padding: 10px 14px; border-radius: 10px; background: var(--cream);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .k9-materials li a:hover { background: var(--yellow-soft); color: var(--blue-deep); }
+    .k9-materials li a .u { font-size: 10px; color: var(--ink-faint); font-family: 'Fira Code', Consolas, monospace; word-break: break-all; max-width: 46%; }
+    .k9-credit { margin-top: 18px; font-size: 0.8rem; color: var(--ink-faint); line-height: 1.8; }
+    .k9-quote { margin-top: 22px; padding-left: 16px; border-left: 3px solid var(--yellow); font-family: var(--serif); font-weight: 700; font-size: 0.95rem; color: var(--ink-light); }
+
+    /* ============ 页脚 ============ */
+    .footer {
+      border-top: 1px solid rgba(41, 38, 38, 0.1);
+      padding: clamp(28px, 5vh, 48px) 0; text-align: center;
+    }
+    .footer p { font-size: 0.82rem; color: var(--ink-faint); line-height: 1.9; }
+    .footer .credit a { color: var(--blue); border-bottom: 1px dashed var(--yellow); }
+
+    /* ============ 响应式 ============ */
+    @media (max-width: 1020px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 120px; }
+      .hero-collage { max-width: 560px; }
+      .k1-grid, .k2-grid, .k5-grid, .k6-grid, .k9-wrap { grid-template-columns: 1fr; }
+      .k3-grid { grid-template-columns: 1fr; }
+      .k4-grid { grid-template-columns: repeat(2, 1fr); }
+      .k7-grid, .k8-grid, .k5-steps { grid-template-columns: 1fr; }
+      .recap { grid-template-columns: repeat(2, 1fr); }
+      .k6-posters { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 600px) {
+      body { font-size: 15px; }
+      .topnav { padding: 10px 16px; }
+      .topnav .nm small { display: none; }
+      .topnav nav a { padding: 5px 8px; font-size: 11px; }
+      .k4-grid { grid-template-columns: 1fr 1fr; }
+      .recap { grid-template-columns: 1fr; }
+      .k6-posters { grid-template-columns: repeat(2, 1fr); }
+      .k9-materials li a { flex-direction: column; gap: 2px; }
+      .k9-materials li a .u { max-width: 100%; }
+      .deco-num { font-size: 4.4rem; }
+    }
+  
+    /* === 深对比面板 & IP 向导 === */
+    .section--deep { background: var(--dark-panel); color: var(--cream); }
+    .section--deep .section-title,
+    .section--deep .section-sub,
+    .section--deep .section-number,
+    .section--deep .label-caps { color: var(--cream); }
+    .section--deep .section-title em { color: var(--gold); }
+    .section--deep .chip { background: rgba(251, 247, 238, 0.08); border-color: rgba(251, 247, 238, 0.22); color: var(--cream); }
+    .section--deep .chip--gold { background: rgba(224, 192, 104, 0.15); border-color: rgba(224, 192, 104, 0.55); color: var(--gold); }
+    .section--deep a { color: var(--gold); }
+    .section--deep .card { background: rgba(251, 247, 238, 0.06); border-color: rgba(251, 247, 238, 0.10); color: var(--cream); }
+    .section--deep .card b, .section--deep .card strong { color: var(--gold); }
+
+    /* === IP 侧边定位 === */
+    .section-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: clamp(24px, 4vw, 56px);
+      align-items: center;
+      margin-bottom: clamp(36px, 5vw, 64px);
+      position: relative;
+      z-index: 2;
+    }
+    .section-top .section-header { margin-bottom: 0; }
+    .section-ip { display: flex; align-items: center; justify-content: center; }
+    .section-ip--left { order: -1; }
+    .section-ip--right { order: 1; }
+    .section-ip .ip-wrap { padding: 0; }
+    .section-ip .ip-guide {
+      display: block;
+      max-height: clamp(150px, 18vw, 240px);
+      width: auto;
+      margin: 0;
+      filter: drop-shadow(0 14px 28px rgba(0,0,0,0.18));
+    }
+    /* 深色面板上 IP 加深色外发光，压住剩余浅色杂边 */
+    .section--deep .section-ip .ip-guide {
+      filter: drop-shadow(0 14px 34px rgba(0,0,0,0.45)) drop-shadow(0 0 10px rgba(43,34,26,0.85));
+    }
+
+    /* Hero IP 放到右侧 */
+    .hero-ip {
+      grid-column: 1 / -1;
+      justify-self: end;
+      align-self: end;
+      margin-right: clamp(20px, 4vw, 48px);
+      z-index: 2;
+    }
+    .hero-ip .ip-guide {
+      display: block;
+      max-height: clamp(130px, 16vw, 190px);
+      width: auto;
+      filter: drop-shadow(0 14px 28px rgba(0,0,0,0.18)) drop-shadow(0 0 8px rgba(43,34,26,0.6));
+    }
+
+    @media (max-width: 1020px) {
+      .hero-ip { justify-self: center; margin-right: 0; margin-top: 10px; }
+    }
+    @media (max-width: 900px) {
+      .section-top { gap: 20px; }
+      .section-ip .ip-guide { max-height: 150px; }
+      .hero-ip .ip-guide { max-height: 140px; }
+    }
+    @media (max-width: 640px) {
+      .section-top {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 18px;
+      }
+      .section-top .section-header { text-align: center; }
+      .section-ip { order: 1; }
+      .section-ip .ip-guide,
+      .hero-ip .ip-guide { max-height: 120px; }
+    }
+
+  
+    /* === 简历版覆写 === */
+    .hero h1 { font-size: clamp(3rem, 6vw, 4.4rem); }
+    .hero-contact { margin-top: 14px; font-size: 0.92rem; color: var(--ink-light); }
+    .hero-contact a { color: var(--blue-deep); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  </style>
+</head>
+<body>
+
+  <!-- ====== 顶部导航 ====== -->
+  <header class="topnav">
+    <div class="nm">李雅洁<small>个人作品集</small></div>
+    <nav>
+      <a href="#k1">教育</a>
+      <a href="#kgame">项目</a>
+      <a href="#k4">嵌入式</a>
+      <a href="#k2">竞赛</a>
+      <a href="#k6">内容实战</a>
+      <a href="#k8">技能</a>
+      <a href="#k9">联系</a>
+    </nav>
+  </header>
+
+  <!-- ====== HERO · 封面 ====== -->
+  <section class="hero" id="h">
+    <div class="hero-text">
+      <span class="label-caps">个人作品集 · 2026</span>
+      <h1>李雅洁<em>.</em></h1>
+      <div class="sub">淮南师范学院 · 通信工程</div>
+      <p class="desc">会写代码、会用 AI，也能下得了硬件的手——把想法做成能上线、能被验证的作品。</p>
+      <div class="tagrow">
+        <span class="chip chip--gold">AI 应用</span><span class="chip chip--gold">Python/C++</span><span class="chip chip--gold">STM32/Linux 嵌入式</span><span class="chip chip--gold">Canvas 游戏</span><span class="chip">前端开发</span><span class="chip">可视化</span>
+      </div>
+      <p class="hero-contact">邮箱 <a href="mailto:2382187997@qq.com">2382187997@qq.com</a> · 手机 18755487072</p>
+      <div class="hero-stats">
+        <div class="stat"><b>3.91 / 4.5</b><span>GPA · 专业前 5%</span></div>
+        <div class="stat"><b>2 项</b><span>省级竞赛奖项</span></div>
+        <div class="stat"><b>4 个</b><span>实战项目 · 2 个嵌入式</span></div>
+      </div>
+    </div>
+    <span class="scrollhint"><span>往下翻 · 看作品</span><i></i></span>
+<div class="hero-ip reveal reveal-d3"><div class="ip-wrap"><img class="ip-guide" src="assets/1875390940265642.png" alt="打招呼"></div></div>
+  </section>
+<section class="section" id="k1">
+    <span class="deco-num" aria-hidden="true">01</span>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-number">01 / Education</span>
+        <h2 class="section-title">教育背景 · 荣誉</h2>
+        <p class="section-sub">淮南师范学院 · 通信工程（2023 级 · 大四）</p>
+      </div>
+      <div class="k1-grid">
+        <div class="k1-left reveal reveal-d1">
+          <div class="kv">
+            <div class="line"><b>学校专业</b><span>淮南师范学院 · 通信工程（2023 级，大四）</span></div>
+            <div class="line"><b>GPA</b><span>3.91 / 4.5（专业前 5%）</span></div>
+            <div class="line"><b>核心课程</b><span>专业第 1 / 49</span></div>
+            </div>
+          </div>
+        <div class="k1-right">
+          <div class="card reveal reveal-d2">
+            <span class="k">荣誉</span>
+            <div class="tagrow" style="margin-top:10px">
+              <span class="chip chip--gold">国家励志奖学金</span>
+              <span class="chip chip--gold">校一等奖学金</span>
+              <span class="chip chip--gold">优秀学生标兵</span>
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </section>
+<section class="section section--alt" id="kgame">
+    <span class="deco-num" aria-hidden="true">02</span>
+    <div class="container">
+      <div class="section-top">
+        <div class="section-header reveal">
+          <span class="section-number">02 / Project</span>
+          <h2 class="section-title">《馍饼店》横屏经营小游戏</h2>
+          <p class="section-sub">独立完成的完整游戏项目 · Canvas 原生实现 · 零第三方依赖 · 40 个测试全部通过</p>
+        </div>
+        <div class="section-ip section-ip--right reveal reveal-d2">
+          <div class="ip-wrap"><img class="ip-guide" src="assets/1875390940267530.png" alt="点赞"></div>
+        </div>
+      </div>
+      <div class="k3-grid">
+        <div>
+          <div class="k3-note reveal reveal-d1">以中国早点摊为主题的经营小游戏：13 道菜品、4 类厨具、16 位街坊顾客，三块案板并行制作，揉面、加馅、塑形、翻面、切块都由手势完成；画面里的人和食物全部用 Canvas 代码绘制，没有任何图片素材，也不依赖网络。</div>
+          <div class="tagrow reveal reveal-d2" style="margin:14px 0">
+            <span class="chip chip--olive">约 1800 行核心源码</span><span class="chip chip--olive">零第三方依赖</span><span class="chip chip--olive">40 个 Node 测试</span><span class="chip chip--olive">单文件构建 · 微信小游戏入口</span>
+          </div>
+          <div class="tagrow reveal reveal-d2" style="margin:0 0 14px">
+            <a class="btn" href="https://li2382187997.github.io/mobing-shop-demo/" target="_blank" rel="noopener">在线试玩 ↗</a>
+          </div>
+          <div class="k3-note reveal reveal-d3">核心玩法逻辑同时兼容浏览器与 Node 双环境，所以玩法、手势、库存、定价、存档这些系统都能在没有浏览器的环境里自动跑测试；另外写了构建脚本把多模块源码打包成 149 KB 的单文件 HTML，双击就能玩。（源码暂未公开，可在面试中演示。）</div>
+        </div>
+        <figure class="photo reveal reveal-d2">
+          <img src="assets/1878931328457865.png" alt="馍饼店制作界面">
+          <figcaption>制作界面 · 三位顾客、订单气泡与三块案板同框</figcaption>
+        </figure>
+      </div>
+      <div class="k3-strip">
+        <figure class="photo reveal reveal-d1">
+          <img src="assets/1878931328457897.png" alt="后院田园系统">
+          <figcaption>后院田园 · 种植与加工链</figcaption>
+        </figure>
+        <figure class="photo reveal reveal-d1">
+          <img src="assets/1878931328457881.png" alt="13 道菜品图鉴">
+          <figcaption>菜谱 · 13 道菜品</figcaption>
+        </figure>
+        <figure class="photo reveal reveal-d1">
+          <img src="assets/1878931328458761.png" alt="当日结算">
+          <figcaption>当日结算 · 经营循环</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+<section class="section section--alt" id="k3">
+    <span class="deco-num" aria-hidden="true">03</span>
+    <div class="container">
+      <div class="section-top">
+        <div class="section-header reveal">
+          <span class="section-number">03 / Project</span>
+          <h2 class="section-title">绘画工作台 · 计时打卡板绘工具</h2>
+          <p class="section-sub">为真实需求独立开发的前端小应用 · 记录练习 · 自动生成趋势</p>
+        </div>
+        <div class="section-ip section-ip--right reveal reveal-d2">
+          <div class="ip-wrap"><img class="ip-guide" src="assets/1875390947168313.png" alt="画画基准"></div>
+        </div>
+      </div>
+      <div class="k3-grid">
+        <div>
+          <div class="k3-note reveal reveal-d1">为解决自己的真实问题独立设计实现的小工具：板绘练习计时打卡，记录每日练习时长，自动生成近 7 天趋势图表（纯前端 + IndexedDB 本地存储）。</div>
+          <div class="tagrow reveal reveal-d2" style="margin:14px 0">
+            <span class="chip chip--olive">独立完成：需求 → 设计 → 实现</span><span class="chip chip--olive">IndexedDB · 图表化统计</span>
+          </div>
+          <div class="tagrow reveal reveal-d2" style="margin:0 0 14px">
+            <a class="btn" href="https://li2382187997.github.io/paint-workbench/" target="_blank" rel="noopener">在线 Demo ↗</a>
+            <a class="btn btn--paper" href="https://github.com/li2382187997/paint-workbench" target="_blank" rel="noopener">源码 · GitHub ↗</a>
+          </div>
+          <div class="k3-note reveal reveal-d3">下一步：加云端同步与数据导出。</div>
+        </div>
+        <figure class="photo reveal reveal-d2">
+          <img src="assets/1875390889251931.png" alt="工作台主界面">
+          <figcaption>工作台主界面</figcaption>
+        </figure>
+      </div>
+      <div class="k3-strip">
+        <figure class="photo reveal reveal-d1">
+          <img src="assets/1875390904142890.png" alt="记录统计页">
+          <figcaption>记录 · 统计</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+<section class="section section--alt" id="k4">
+    <span class="deco-num" aria-hidden="true">04</span>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-number">04 / Embedded Project</span>
+        <h2 class="section-title">STM32 健康监测蓝牙终端</h2>
+        <p class="section-sub">个人兴趣项目 · 从原理图接线到 1045 行应用层 C 代码全部独立完成</p>
+      </div>
+      <div class="k3-grid">
+        <div>
+          <div class="k3-note reveal reveal-d1">一块 STM32F103C8T6 核心板 + MAX30102 + MPU6050 + 0.96 寸 OLED + HC-08 蓝牙，做成的可穿戴健康监测终端：本地采集心率血氧与姿态、越界就地声光报警，同时按帧把数据推给手机。</div>
+          <div class="tagrow reveal reveal-d2" style="margin:14px 0">
+            <span class="chip chip--olive">STM32F103 · Cortex-M3</span><span class="chip chip--olive">MAX30102 心率血氧</span><span class="chip chip--olive">MPU6050 跌倒检测</span><span class="chip chip--olive">HC-08 蓝牙透传</span><span class="chip chip--olive">Flash 配置持久化</span>
+          </div>
+          <div class="k3-note reveal reveal-d3">1045 行应用层 C 代码（src/main.c）：PPG 波形滤波计算心率血氧、DMP 姿态角判定跌倒、多页面四键 UI、阈值掉电不丢、MANUAL/AUTO 双工作模式——非课程作业、非厂商例程改造。</div>
+        </div>
+        <figure class="photo reveal reveal-d2">
+          <img src="assets/1876495443998954.jpg" alt="OLED 数据页实拍">
+          <figcaption>OLED 数据页 · 实时心率血氧显示</figcaption>
+        </figure>
+      </div>
+      <div class="k3-strip">
+        <figure class="video-demo video-demo--portrait reveal reveal-d1">
+          <video controls playsinline preload="metadata" poster="assets/1876495426424890.jpg">
+            <source src="assets/1876498209481866.mp4" type="video/mp4">
+          </video>
+          <figcaption>整机演示视频 · 心率血氧采集 / 跌倒声光报警 / 蓝牙实时上报（点击播放）</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+<section class="section section--alt" id="k5">
+    <span class="deco-num" aria-hidden="true">05</span>
+    <div class="container">
+      <div class="section-top">
+        <div class="section-header reveal">
+          <span class="section-number">05 / Embedded Project</span>
+          <h2 class="section-title">嵌入式 Linux 智能家居控制终端</h2>
+          <p class="section-sub">企业实训项目 · 纯 C 帧缓冲直绘 UI · 中控 + STM32 从机 + Ubuntu 语音三层架构</p>
+        </div>
+        <div class="section-ip section-ip--right reveal reveal-d2">
+          <div class="ip-wrap"><img class="ip-guide" src="assets/1875390940265642.png" alt="打招呼"></div>
+        </div>
+      </div>
+      <div class="k3-grid">
+        <div>
+          <div class="k3-note reveal reveal-d1">在嵌入式 Linux 开发板上用纯 C 写出智能家居中控：800×480 电阻触摸屏、帧缓冲（mmap）直绘界面，串起「嵌入式中控 + STM32 从机（3 路 LED / 血压 / 心率，串口通信）+ Ubuntu 语音识别（TCP socket）」三层。</div>
+          <div class="tagrow reveal reveal-d2" style="margin:14px 0">
+            <span class="chip chip--olive">嵌入式 Linux</span><span class="chip chip--olive">纯 C · 无 GUI 框架</span><span class="chip chip--olive">帧缓冲 mmap 直绘</span><span class="chip chip--olive">触摸去抖分发</span><span class="chip chip--olive">串口 / Socket 通信</span>
+          </div>
+          <div class="k3-note reveal reveal-d3">BMP 解码、页面状态机、触摸热区、语音命令分发全部手写；欢迎页 → 开机进度条 → 主页四卡片（相册 / 语音控制 / 留言器 / 灯光控制），每个页面独立循环、返回热区。</div>
+          <div class="tagrow reveal reveal-d4" style="margin:14px 0 0">
+            <a class="btn btn--paper" href="https://github.com/li2382187997/linux-smart-home" target="_blank" rel="noopener">源码 · GitHub ↗</a>
+          </div>
+        </div>
+        <figure class="photo reveal reveal-d2">
+          <img src="assets/1876495426425946.jpg" alt="开机动画实拍">
+          <figcaption>开机动画 · 欢迎页</figcaption>
+        </figure>
+      </div>
+      <div class="k3-strip">
+        <figure class="video-demo reveal reveal-d1">
+          <video controls playsinline preload="metadata" poster="assets/1876495443998986.jpg">
+            <source src="assets/1876499676318091.mp4" type="video/mp4">
+          </video>
+          <figcaption>整机演示视频 · 开机动画 / 触摸交互 / 语音控制 / 灯光控制 / 相册 BMP 解码（点击播放）</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+<section class="section section--alt section--deep" id="k2">
+    <span class="deco-num" aria-hidden="true">06</span>
+    <div class="container">
+      <div class="section-top">
+        <div class="section-header reveal">
+          <span class="section-number">06 / Awards</span>
+          <h2 class="section-title">学科竞赛</h2>
+          <p class="section-sub">省级竞赛 · 真实经历</p>
+        </div>
+        <div class="section-ip section-ip--left reveal reveal-d2">
+          <div class="ip-wrap"><img class="ip-guide" src="assets/1875390940267530.png" alt="点赞"></div>
+        </div>
+      </div>
+      <div class="k2-grid">
+        <figure class="photo reveal reveal-d1">
+          <img src="assets/1875390904145146.jpg" alt="获奖证书">
+          <figcaption>获奖证书 · 学科竞赛（合并图）</figcaption>
+        </figure>
+        <div class="k2-right">
+          <div class="card reveal reveal-d2">
+            <span class="k">Award 01</span>
+            <b class="t">北斗杯 · 省级二等奖</b>
+            <div class="tagrow" style="margin:6px 0 8px">
+              <span class="chip">团队负责人</span><span class="chip">原创预警方案</span>
+            </div>
+            <p class="d">原创提出「北斗高精度定位 × 交通事故预警」方案，负责预警模型、申报与答辩。</p>
+          </div>
+          <div class="card reveal reveal-d3">
+            <span class="k">Award 02</span>
+            <b class="t">环境监测机器人 · 省级三等奖</b>
+            <div class="tagrow" style="margin:6px 0 8px">
+              <span class="chip">核心成员</span><span class="chip">传感器 · 算法</span>
+            </div>
+            <p class="d">多传感器信息融合，负责传感器筛选、设备调试与算法优化。</p>
+          </div>
+          </div>
+      </div>
+    </div>
+  </section>
+<section class="section k6-panel" id="k6">
+    <span class="deco-num" aria-hidden="true">07</span>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-number">07 / Content</span>
+        <h2 class="section-title">内容实战 · 北辰青年线上实习</h2>
+        <p class="section-sub">四周线上实习 · AI 个人说明书 / 洞察报告 / 招新全案 / 岗位分析复盘，四类交付一人全链路</p>
+      </div>
+      <div class="k6-grid">
+        <div>
+          <div class="k6-cover reveal reveal-d1">
+            <img src="assets/1875390904146122.png" alt="招新全案封面">
+            <div class="cap">招新推文栏目 · 10 张海报 · 阅读器已上线（可点开）</div>
+          </div>
+          <div class="k6-posters">
+            <div class="ph reveal reveal-d2"><img src="assets/1876495463327833.png" alt="洞察报告 · 奥德赛时期"></div>
+            <div class="ph reveal reveal-d3"><img src="assets/1875390901574682.png" alt="招新海报"></div>
+            <div class="ph reveal reveal-d4"><img src="assets/1876495463327849.png" alt="AI 个人说明书"></div>
+            <div class="ph reveal reveal-d5"><img src="assets/1875390940265610.png" alt="招新海报"></div>
+          </div>
+        </div>
+        <div class="k6-right">
+          <div class="tagrow reveal reveal-d1">
+            <span class="chip">洞察报告</span><span class="chip">招新全案</span><span class="chip">AI 个人说明书</span>
+            <span class="chip">AI 给选项 · 我把关</span><span class="chip">已上线可点</span>
+          </div>
+          <p class="note-p reveal reveal-d2">从 900 字洞察成稿《奥德赛时期》定选题与叙事，到「彼得潘」叙事线的招新推文与 10 张海报，再到向协作方说明「怎么和我配合最高效」的 AI 个人说明书——四类交付覆盖内容策划、视觉设计、技术执行全链路。</p>
+          <div class="linkcol reveal reveal-d3">
+            <a class="btn" href="https://75a637a723e04761bf468efa143362bd.app.workbuddy.link" target="_blank" rel="noopener">招新阅读器 v2（金色版）↗</a>
+            <span class="url-note">https://75a637a723e04761bf468efa143362bd.app.workbuddy.link</span>
+            <a class="btn btn--paper" href="https://38ad7a61b0624a93a78e0223e7c55375.app.workbuddy.link" target="_blank" rel="noopener">项目总结报告 ↗</a>
+            <span class="url-note">https://38ad7a61b0624a93a78e0223e7c55375.app.workbuddy.link</span>
+          </div>
+        </div>
+      </div>
+      <div class="recap">
+        <div class="cell reveal reveal-d1"><b>洞察起手</b><span>洞察 = 数据 + 亲身经验：900 字《奥德赛时期》成稿定下叙事基调，再延展成整套物料</span></div>
+        <div class="cell reveal reveal-d2"><b>AI 提效</b><span>AI 工具链批量产出文案 / 海报 / 排版，前端实现模拟阅读器并部署上线</span></div>
+        <div class="cell reveal reveal-d3"><b>质量验收</b><span>9 个关键判断点逐项验收：AI 给选项，叙事方向与审美自己把关</span></div>
+        <div class="cell reveal reveal-d4"><b>AI 协作方法</b><span>沉淀 AI 个人说明书：向协作方说明自身工作方式，让 AI 协作可复制、可交接</span></div>
+        <div class="cell reveal reveal-d5"><b>岗位分析</b><span>自建求职工作流：岗位分析 → 匹配 → 材料 → 模拟面试，作品集本身即第一个产出</span></div>
+        <div class="cell reveal reveal-d5"><b>再做一次</b><span>先对齐叙事 / 配色 / 工具再动手，拆任务排优先级，先跑通最小闭环</span></div>
+      </div>
+    </div>
+  </section>
+<section class="section section--alt" id="k8">
+    <span class="deco-num" aria-hidden="true">08</span>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-number">08 / Skills</span>
+        <h2 class="section-title">技能与工具</h2>
+        <p class="section-sub">技能与工具箱 · 熟练度如实标注</p>
+      </div>
+      <div class="k8-grid">
+        <div class="card reveal reveal-d1">
+          <span class="k">编程与开发</span>
+          <b class="t">C/C++ · Python</b>
+          <p class="d">C/C++（课程、竞赛与嵌入式项目）｜ Python（数据分析与小工具）</p>
+        </div>
+        <div class="card reveal reveal-d2">
+          <span class="k">嵌入式开发</span>
+          <b class="t">STM32 · 嵌入式 Linux</b>
+          <p class="d">STM32 外设驱动（I²C / SPI / UART / RTC / Flash）｜ 蓝牙透传 ｜ 嵌入式 Linux 帧缓冲 GUI · 触摸 · 串口 / Socket</p>
+        </div>
+        <div class="card reveal reveal-d3">
+          <span class="k">前端与上线</span>
+          <b class="t">HTML/CSS/JS · 部署</b>
+          <p class="d">HTML/CSS/JS（已有上线作品：招新阅读器）｜ IndexedDB 本地数据｜ 部署与发布</p>
+        </div>
+        <div class="card reveal reveal-d1">
+          <span class="k">数据分析</span>
+          <b class="t">整理 · 可视化</b>
+          <p class="d">Excel（数据整理与图表）｜ Python 数据分析｜ 可视化（近 7 天趋势工具实践）｜ SQL/埋点：了解，可快速上手</p>
+        </div>
+        <div class="card reveal reveal-d2">
+          <span class="k">AI 应用与提效</span>
+          <b class="t">AI 工具链 · 自建 Skill</b>
+          <p class="d">AI 工具链：文案 / 绘图 / 排版 / 前端 / 部署｜ 自建 + 复用 Skill（guizang / gzh-design / job-interview-prep）｜ AI 给选项，方向与验收自己把关</p>
+        </div>
+        <div class="card reveal reveal-d3">
+          <span class="k">产品 / 用户 / 内容</span>
+          <b class="t">洞察 · 策划 · 复盘</b>
+          <p class="d">用户洞察｜ 内容策划与公众号排版｜ 复盘方法论｜ 自建求职工作流（岗位分析 → 匹配 → 材料 → 模拟面试）</p>
+        </div>
+        <div class="card reveal reveal-d1">
+          <span class="k">知识管理</span>
+          <b class="t">Obsidian 三层知识库</b>
+          <p class="d">信息沉淀与复用｜ 个人档案持续更新｜ 日常使用中</p>
+        </div>
+      </div>
+    </div>
+  </section>
+<section class="section section--deep" id="k9">
+    <span class="deco-num" aria-hidden="true">09</span>
+    <div class="container">
+      <div class="section-top">
+        <div class="section-header reveal">
+          <span class="section-number">09 / Contact</span>
+          <h2 class="section-title">联系方式 · 证据链接</h2>
+        </div>
+        <div class="section-ip section-ip--right reveal reveal-d2">
+          <div class="ip-wrap"><img class="ip-guide" src="assets/1875390940267546.png" alt="比心微笑"></div>
+        </div>
+      </div>
+      <div class="k9-wrap">
+        <div>
+          <p class="k9-big reveal reveal-d1">把 AI 时代能做的事<em>,</em><br>做成能被验证的作品<em>.</em></p>
+          <p class="section-sub reveal reveal-d2" style="margin-top:16px">可点开（新窗口 ↗ · 被拦截就复制网址）</p>
+          <div class="k9-links reveal reveal-d3">
+            <a class="btn" href="https://75a637a723e04761bf468efa143362bd.app.workbuddy.link" target="_blank" rel="noopener">招新阅读器 v2（金色版）↗</a>
+            <a class="btn btn--paper" href="https://38ad7a61b0624a93a78e0223e7c55375.app.workbuddy.link" target="_blank" rel="noopener">招新项目总结报告 ↗</a>
+          </div>
+          <p class="k9-quote reveal reveal-d4">可按 JD 适配前端 / 后端 / 全栈、C++ / Python、嵌入式开发方向（投递时微调本页侧重）。</p>
+          <p class="k9-credit reveal reveal-d4">李雅洁 · 淮南师范学院 · 通信工程 · 大四<br>AI 应用 · 软件开发 · 嵌入式 · 个人作品集</p>
+        </div>
+        <div class="k9-materials reveal reveal-d2">
+          <div class="mk">联系方式</div>
+          <ul>
+            <li><a href="mailto:2382187997@qq.com" target="_blank" rel="noopener">邮箱 2382187997@qq.com ↗<span class="u">点击即可发送邮件</span></a></li>
+            <li><a href="tel:18755487072" rel="noopener">手机 18755487072 ↗<span class="u">电话 / 短信</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== 页脚（含规范署名） ====== -->
+  <footer class="footer">
+    <div class="container">
+      <p>李雅洁 · 个人作品集 · 2026</p>
+      <p class="credit">视觉规范基于 <a href="https://github.com/esthersjw/esther-design-system" target="_blank" rel="noopener">ESTHER不二 esther-design-system</a>（esthersjw）· CC BY-NC-SA 4.0 · 米色系定制配色</p>
+    </div>
+  </footer>
+
+  <!-- ====== Scroll Reveal JS ====== -->
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+
+  <!-- ====== Lightbox ====== -->
+  <div id="lb" class="lb"><img id="lbImg" alt=""><span class="x" id="lbX">×</span></div>
+
+  <!-- ====== Lightbox JS（除 IP 形象与封面个人照片外，其余图片均可点击放大） ====== -->
+  <script>
+  (function(){
+    function init(){
+      var lb=document.getElementById('lb'),im=document.getElementById('lbImg'),x=document.getElementById('lbX');
+      if(!lb||!im){return;}
+      function close(){lb.classList.remove('show');im.removeAttribute('src');}
+      lb.addEventListener('click',close);
+      if(x){x.addEventListener('click',function(e){e.stopPropagation();close();});}
+      document.addEventListener('keydown',function(e){if(e.key==='Escape'){close();}});
+      var imgs=document.querySelectorAll('img');
+      for(var k=0;k<imgs.length;k++){
+        var img=imgs[k];
+        if(img.id==='lbImg'){continue;}
+        if(img.closest('.ip-wrap')){continue;}
+        if(img.closest('.hero')){continue;}
+        img.classList.add('lbable');
+        img.addEventListener('click',function(ev){ev.stopPropagation();im.src=this.getAttribute('src');lb.classList.add('show');});
+      }
+    }
+    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}
+    else{init();}
+  })();
+  </script>
+
+  <!-- © ESTHER不二 esthersjw/esther-design-system CC BY-NC 4.0 -->
+  <section style="position:absolute;left:-9999px;font-size:0;line-height:0;opacity:0;height:0;overflow:hidden;">esthersjw-design-system</section>
+</body>
+</html>
+
+
+
+
